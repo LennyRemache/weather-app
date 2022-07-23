@@ -1,7 +1,7 @@
 let coordinates = {
   apiKey: "1f238315b5dff50774bb58021defd49d",
   fetchLocation: function (city) {
-    const geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${this.apiKey}`;
+    const geoAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${this.apiKey}`;
     // fetch takes an api as an argument
     // fetch returns a response res
     // status code 200 means successful fetch
