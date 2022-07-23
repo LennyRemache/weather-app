@@ -78,23 +78,40 @@ const monthNames = [
   "November",
   "December",
 ];
+const desc = document.querySelector(".description");
+
+// local storage functionality for saved previous searched city on reload
+const savedCity = localStorage.getItem("cityName");
+if (savedCity) {
+  renderWeather(savedCity);
+} else {
+  renderWeather("San Francisco");
+}
 
 window.addEventListener("load", () => {
   const today = new Date();
   const day = String(today.getDate());
-  const month = monthNames[today.getMonth()]; //January is 0!
+  const month = monthNames[today.getMonth()]; //January is 0
   const year = today.getFullYear();
   //console.log(month, day, year);
-
   date.outerHTML = `<time class="date" datetime="${year}-${month}-${day}">${month} ${day}, ${year}</time>`;
 });
 
-searchBtn.addEventListener("click", async () => {
+searchBtn.addEventListener("click", () => {
   const city = inputText.value;
   inputText.value = "";
+  if (city === "") {
+    inputText.setAttribute("placeholder", "Enter a city please");
+    return;
+  }
+  renderWeather(city);
+});
+
+async function renderWeather(city) {
   const [temp, temp_min, temp_max, name, description, icon] =
     await weather.fetchWeather(city);
   //console.log(temp, temp_min, temp_max, name, description, icon);
+  localStorage.setItem("cityName", name);
   cityText.textContent = name;
   actualTemp.innerHTML = `${Math.floor(temp)}&deg;`;
   highLowTemp.innerHTML = `${Math.floor(temp_max)}&deg; / ${Math.floor(
@@ -104,4 +121,5 @@ searchBtn.addEventListener("click", async () => {
     "src",
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
-});
+  desc.textContent = description;
+}
