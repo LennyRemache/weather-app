@@ -9,24 +9,27 @@
     <title>Weather App</title>
   </head>
   <body>
-    <header></header>
-    <main id="content">
+    <header>
       <div id="video-container">
         <video src="./video/switzerland.mp4" muted loop autoplay></video>
       </div>
+    </header>
+    <main id="content">
+      <section id="search-bar">
+        <input type="text" id="user-input" />
+        <input type="button" value="SEARCH" id="search-btn" />
+      </section>
       <article class="weather-card">
         <section class="location-date">
           <h2 class="city">San Francisco</h2>
           <time class="date" datetime="2022-07-22">July 22, 2022</time>
+          <img class="curr-temp-icon" />
         </section>
         <section class="curr-temp">
           <p class="actual">72&deg;</p>
           <p class="high-low">81&deg; / 57&deg;</p>
         </section>
-        <section class="curr-temp-icon">
-          <img />
-        </section>
-        <section class="forecast">
+        <!-- <section class="forecast">
           <p class="day">Today</p>
           <img class="weather-icon" />
           <p class="day-temp">72&deg;</p>
@@ -55,7 +58,7 @@
           <p class="day">Wed</p>
           <img class="weather-icon" />
           <p class="day-temp">72&deg;</p>
-        </section>
+        </section> -->
       </article>
     </main>
     <footer></footer>
